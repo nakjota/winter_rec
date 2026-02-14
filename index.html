@@ -33,10 +33,6 @@
           <button class="btn ghost" id="btnRandomCard">ランダム</button>
           <button class="btn ghost" id="btnHideNumber">表示/非表示</button>
         </div>
-
-        <div class="note">
-          ※各代表者が自分の端末でこの画面を開いてタップ
-        </div>
       </div>
     </section>
 
@@ -44,7 +40,7 @@
     <section id="gesture" class="panel" aria-label="ツインジェスチャー">
       <div class="card">
         <h2>ツインジェスチャー お題</h2>
-        
+
         <div class="controls">
           <label class="select">
             カテゴリ
@@ -61,6 +57,10 @@
           </div>
         </div>
 
+        <!-- ★お題表示エリア（これが無いと表示されない） -->
+        <div class="prompt-wrap">
+          <div class="prompt" id="promptText" aria-live="polite">（お題）</div>
+        </div>
 
         <div class="row">
           <button class="btn" id="btnPrev">戻る</button>
@@ -71,10 +71,6 @@
         <div class="row">
           <button class="btn danger" id="btnHard">激ムズに切替（大逆転用）</button>
         </div>
-
-        <div class="small">
-          ※回答役はお題を見ない
-        </div>
       </div>
     </section>
   </main>
@@ -82,7 +78,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
