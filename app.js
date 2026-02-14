@@ -107,18 +107,22 @@ function resetOrder() {
 
 function setPrompt() {
   const list = PROMPTS[currentCategory];
-  if (!list.length) {
+  if (!list || list.length === 0) {
     promptText.textContent = "（お題なし）";
+    // マスクは常に消す
+    masked = false;
+    promptMask.style.display = "none";
     return;
   }
 
   const realIndex = order[idx % order.length];
   promptText.textContent = list[realIndex];
 
-  // 常に表示にする
+  // ★常に表示
   masked = false;
   promptMask.style.display = "none";
 }
+
 
 
 
@@ -195,5 +199,6 @@ function resetTimer() {
 btnStart.onclick = startTimer;
 btnPause.onclick = pauseTimer;
 btnReset.onclick = resetTimer;
+
 
 
