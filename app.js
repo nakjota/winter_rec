@@ -1,4 +1,6 @@
-// ---------- 共通：タブ切替 ----------
+// ==============================
+// タブ切替
+// ==============================
 const tabs = document.querySelectorAll(".tab");
 const panels = {
   cards: document.getElementById("cards"),
@@ -15,7 +17,9 @@ tabs.forEach((t) => {
   });
 });
 
-// ---------- 札（1/2/4） ----------
+// ==============================
+// 札（1/2/4）
+// ==============================
 const bigNumber = document.getElementById("bigNumber");
 let numberHidden = false;
 
@@ -36,67 +40,243 @@ document.getElementById("btnHideNumber").onclick = () => {
   bigNumber.style.visibility = numberHidden ? "hidden" : "visible";
 };
 
-// ---------- ツインジェスチャー：お題データ（2人向け寄せ） ----------
+// ==============================
+// ツインジェスチャー：お題
+// ※あなたの150個リストをここに入れてOK
+// ==============================
 const PROMPTS = {
   ふつう: [
+    "ボクシング",
+    "相撲",
+    "柔道",
+    "レスリング",
+    "プロレス",
+    "卓球",
+    "テニス",
+    "バドミントン",
+    "サッカー",
+    "野球",
+    "バスケットボール",
+    "バレーボール",
+    "ラグビー",
+    "ハンドボール",
+    "アイスホッケー",
+    "ドッジボール",
     "綱引き",
     "腕相撲",
-    "二人で重い箱を運ぶ",
-    "二人で机を運ぶ",
-    "二人で傘に入る",
-    "二人で自撮りを撮る",
-    "握手して和解",
-    "喧嘩して仲直り",
-    "上司と部下",
-    "先生と生徒",
-    "面接官と就活生",
-    "店員とクレーマー",
-    "医者と患者",
-    "美容師と客",
-    "漫才（ボケとツッコミ）",
-    "占い師と相談者",
-    "コーチと選手",
-    "審判と抗議する選手",
-    "終電ダッシュの二人",
-    "タクシーを奪い合う二人",
-    "二人で乾杯",
-    "酔って絡む／それをさばく",
-    "飲み物を注いであげる",
-    "口裏を合わせる",
-    "二人で謝罪会見"
+    "指相撲",
+    "じゃんけん",
+    "鬼ごっこ",
+    "かくれんぼ",
+    "リレー",
+    "PK戦",
+    "ゴルフ",
+    "ボウリング",
+    "ビリヤード",
+    "ダーツ",
+    "空手",
+    "剣道",
+    "フェンシング",
+    "弓道",
+    "体操",
+    "トランポリン",
+    "スキー",
+    "スノーボード",
+    "サーフィン",
+    "水泳",
+    "スケートボード",
+    "ボルダリング",
+
+    "面接",
+    "授業",
+    "テスト",
+    "発表",
+    "自己紹介",
+    "診察",
+    "取り調べ",
+    "記者会見",
+    "謝罪会見",
+    "プレゼン",
+    "会議",
+    "打ち合わせ",
+    "乾杯",
+    "誕生日会",
+    "結婚式",
+    "披露宴",
+    "入学式",
+    "卒業式",
+    "入社式",
+    "送別会",
+    "歓迎会",
+    "合コン",
+    "カラオケ",
+    "漫才",
+    "コント",
+    "ディベート",
+    "表彰式",
+    "開会式",
+    "閉会式",
+    "始球式",
+    "抽選会",
+    "ビンゴ大会",
+    "写真撮影",
+    "動画撮影",
+    "実況",
+    "罰ゲーム",
+    "早食い",
+    "早飲み",
+    "ダンスバトル",
+    "引っ越し",
+    "買い物",
+    "レジ",
+    "注文",
+    "料理対決",
+    "掃除",
+    "洗濯",
+    "おんぶ",
+    "仲直り",
+    "説教",
+    "交渉",
+
+    "告白",
+    "プロポーズ",
+    "別れ話",
+    "初デート",
+    "映画デート",
+    "三角関係",
+    "遠距離恋愛",
+    "浮気発覚",
+    "復縁",
+    "待ち合わせ",
+
+    "海水浴",
+    "キャンプ",
+    "花火大会",
+    "遊園地",
+    "ジェットコースター",
+    "観覧車",
+    "動物園",
+    "水族館",
+    "雪合戦",
+    "雪だるま",
+    "プール",
+    "釣り",
+    "凧揚げ",
+    "フラフープ",
+    "シャボン玉",
+    "テレビゲーム",
+    "UNO",
+    "オセロ",
+    "将棋",
+    "囲碁",
+    "チェス",
+    "人生ゲーム",
+    "スマブラ",
+    "マリオカート",
+    "ポケモンバトル",
+    "ヒーローショー",
+    "戦隊ヒーロー",
+    "悪役",
+    "刑事",
+    "犯人",
+    "医者",
+    "患者",
+    "店員",
+    "客",
+    "先生",
+    "生徒",
+    "親子",
+    "兄弟",
+    "ライバル",
+    "優勝",
+    "決勝戦",
+    "サプライズ",
+    "ハイタッチ",
+    "握手",
+    "土下座",
+    "インタビュー",
+    "オーディション",
+    "CM撮影",
+    "ニュース番組",
+    "料理番組",
+    "スポーツ実況",
+    "対決",
+    "勝負"
   ],
+
+  // 激ムズを使いたいならここに入れる
   大逆転: [
-    "片方が嘘をついてて、もう片方が必死に合わせる",
-    "片方が怒ってるのに、もう片方が全く気づいてない",
-    "その場の空気を読んで話題を変える二人",
-    "『今それ言う？』を目で止める",
-    "二人だけが知ってる内輪ネタで盛り上がる",
-    "目配せだけで意思疎通してる",
-    "片方が酔ってないフリ、もう片方がそれを守る",
-    "片方が記憶ないのに断言、もう片方が困る",
-    "二人で“バレないように”静かに笑う",
-    "二人で“やらかした事実”を隠蔽する",
-    "気まずい沈黙を“笑い”に変えようとして失敗",
-    "距離感を間違えて一気に気まずくなる",
-    "『帰る？帰らない？』の駆け引き",
-    "『奢るよ』と言った瞬間に後悔する",
-    "写真を撮ったら思ったより盛れてなくて気まずい",
-    "目が合って“笑ったら負け”が始まる"
+    "PK戦ラストキッカーとキーパー",
+    "ブザービーター直前",
+    "ドラフト1位指名直前",
+    "最終面接結果発表",
+    "緊急謝罪会見冒頭",
+    "ドッキリ種明かし",
+    "ニュース速報生放送",
+    "優勝インタビュー直前",
+    "涙の表彰式",
+    "当落発表の瞬間"
   ]
 };
 
-// ---------- ツインジェスチャー：状態 ----------
+// ==============================
+// ツインジェスチャー：UI参照
+// ==============================
 const categorySelect = document.getElementById("categorySelect");
+const teamSelect = document.getElementById("teamSelect");
 const promptText = document.getElementById("promptText");
+const statusLine = document.getElementById("statusLine");
+
 const btnPrev = document.getElementById("btnPrev");
 const btnNext = document.getElementById("btnNext");
 const btnShuffle = document.getElementById("btnShuffle");
-const btnHard = document.getElementById("btnHard");
+const btnShowTeamLog = document.getElementById("btnShowTeamLog");
+const btnShowAllLog = document.getElementById("btnShowAllLog");
+const btnClearAll = document.getElementById("btnClearAll");
 
-let currentCategory = "ふつう";
-let order = [];
-let idx = 0;
+// ==============================
+// 保存（localStorage）キー
+// ==============================
+const STORE_KEY = "gesture_state_v2";
 
+// 状態：全チーム共通の使用済み + チーム別履歴
+// used: { "category::prompt": true }
+// logs: { "1": [{cat, text, ts}], "2": [...], "3": [...], "4": [...] }
+// lastByTeam: { "1": {cat,text} ... }  ※表示用
+function defaultState() {
+  return {
+    used: {},
+    logs: { "1": [], "2": [], "3": [], "4": [] },
+    lastByTeam: { "1": null, "2": null, "3": null, "4": null }
+  };
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return defaultState();
+    const s = JSON.parse(raw);
+    // 足りないキー補完
+    const d = defaultState();
+    return {
+      used: s.used || d.used,
+      logs: s.logs || d.logs,
+      lastByTeam: s.lastByTeam || d.lastByTeam
+    };
+  } catch {
+    return defaultState();
+  }
+}
+
+function saveState() {
+  localStorage.setItem(STORE_KEY, JSON.stringify(state));
+}
+
+let state = loadState();
+
+// ==============================
+// カテゴリ初期化
+// ==============================
 function buildCategoryOptions() {
   categorySelect.innerHTML = "";
   Object.keys(PROMPTS).forEach((k) => {
@@ -105,53 +285,177 @@ function buildCategoryOptions() {
     opt.textContent = k;
     categorySelect.appendChild(opt);
   });
-  categorySelect.value = currentCategory;
+  // 初期は「ふつう」
+  categorySelect.value = PROMPTS["ふつう"] ? "ふつう" : Object.keys(PROMPTS)[0];
 }
 buildCategoryOptions();
 
-function shuffleArray(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+// ==============================
+// 被りなし抽選（全チーム共通）
+// ==============================
+function keyOf(cat, text) {
+  return `${cat}::${text}`;
 }
 
-function resetOrder() {
-  order = PROMPTS[currentCategory].map((_, i) => i);
-  shuffleArray(order);
-  idx = 0;
-  setPrompt();
+function getUnusedCandidates(cat) {
+  const list = PROMPTS[cat] || [];
+  return list.filter((t) => !state.used[keyOf(cat, t)]);
 }
 
-function setPrompt() {
-  const list = PROMPTS[currentCategory];
-  if (!list || list.length === 0) {
-    promptText.textContent = "（お題なし）";
+// 「次へ」「ランダム」は同じ：未使用からランダムに1つ
+function drawPrompt(cat) {
+  const candidates = getUnusedCandidates(cat);
+  if (candidates.length === 0) return null;
+  const text = candidates[Math.floor(Math.random() * candidates.length)];
+  return text;
+}
+
+function setStatus(msg) {
+  statusLine.textContent = msg || "";
+}
+
+// ==============================
+// 表示更新
+// ==============================
+function renderCurrentForTeam() {
+  const team = teamSelect.value;
+  const current = state.lastByTeam[team];
+  if (!current) {
+    promptText.textContent = "（お題を表示）";
+    setStatus("");
     return;
   }
-  const realIndex = order[idx % order.length];
-  promptText.textContent = list[realIndex];
+  promptText.textContent = current.text;
+  const usedCount = Object.keys(state.used).length;
+  setStatus(`チーム${team}：表示中 / 使用済み ${usedCount} 個`);
 }
 
-categorySelect.addEventListener("change", () => {
-  currentCategory = categorySelect.value;
-  resetOrder();
-});
+teamSelect.addEventListener("change", renderCurrentForTeam);
 
-btnNext.onclick = () => { idx++; setPrompt(); };
-btnPrev.onclick = () => { idx = Math.max(0, idx - 1); setPrompt(); };
-btnShuffle.onclick = () => { resetOrder(); };
+// ==============================
+// お題を確定してログに積む
+// ==============================
+function commitPrompt(team, cat, text) {
+  const k = keyOf(cat, text);
+  state.used[k] = true;
 
-btnHard.onclick = () => {
-  currentCategory = (currentCategory === "大逆転") ? "ふつう" : "大逆転";
-  categorySelect.value = currentCategory;
-  resetOrder();
-};
+  const entry = { cat, text, ts: Date.now() };
+  state.logs[team].push(entry);
+  state.lastByTeam[team] = { cat, text };
 
-resetOrder();
+  saveState();
+  renderCurrentForTeam();
+}
 
-// ---------- 2分タイマー ----------
+// ==============================
+// 次へ（被りなし）
+// ==============================
+function nextPrompt() {
+  const team = teamSelect.value;
+  const cat = categorySelect.value;
+
+  const text = drawPrompt(cat);
+  if (!text) {
+    promptText.textContent = "（このカテゴリは出し切りました）";
+    setStatus(`チーム${team}：このカテゴリは使用済みで空です`);
+    return;
+  }
+  commitPrompt(team, cat, text);
+}
+
+btnNext.onclick = nextPrompt;
+btnShuffle.onclick = nextPrompt;
+
+// ==============================
+// 戻る（1つ取り消し）
+// ・そのチームの最新ログを1件戻す
+// ・そのお題をusedから外す（= 他チームでも再び出る）
+// ==============================
+function undoLast() {
+  const team = teamSelect.value;
+  const arr = state.logs[team];
+  if (!arr || arr.length === 0) {
+    setStatus(`チーム${team}：戻れる履歴がありません`);
+    return;
+  }
+
+  const last = arr.pop();
+  // used解除（※他チームで同じお題が使われていたら本当は解除すべきでないが、
+  // 今回は「同じ端末・運用」で、基本的に被りなしで進む前提なのでOK）
+  delete state.used[keyOf(last.cat, last.text)];
+
+  // lastByTeamを更新（1つ前があればそれ、なければnull）
+  const prev = arr.length ? arr[arr.length - 1] : null;
+  state.lastByTeam[team] = prev ? { cat: prev.cat, text: prev.text } : null;
+
+  saveState();
+  renderCurrentForTeam();
+  setStatus(`チーム${team}：1つ戻しました`);
+}
+
+btnPrev.onclick = undoLast;
+
+// ==============================
+// 履歴表示
+// ==============================
+function formatTime(ts) {
+  const d = new Date(ts);
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  const ss = String(d.getSeconds()).padStart(2, "0");
+  return `${hh}:${mm}:${ss}`;
+}
+
+function showTeamLog() {
+  const team = teamSelect.value;
+  const arr = state.logs[team] || [];
+  if (arr.length === 0) {
+    alert(`チーム${team}の履歴：なし`);
+    return;
+  }
+  const lines = arr.map((e, i) => `${i + 1}. [${e.cat}] ${e.text} (${formatTime(e.ts)})`);
+  alert(`チーム${team}の履歴\n\n` + lines.join("\n"));
+}
+
+function showAllLog() {
+  const out = [];
+  for (const team of ["1", "2", "3", "4"]) {
+    const arr = state.logs[team] || [];
+    out.push(`--- チーム${team} ---`);
+    if (arr.length === 0) out.push("（なし）");
+    else {
+      arr.forEach((e, i) => out.push(`${i + 1}. [${e.cat}] ${e.text}`));
+    }
+    out.push("");
+  }
+  alert(out.join("\n"));
+}
+
+btnShowTeamLog.onclick = showTeamLog;
+btnShowAllLog.onclick = showAllLog;
+
+// ==============================
+// 全リセット
+// ==============================
+function clearAll() {
+  const ok = confirm("全チームの履歴・使用済みを全部リセットします。よろしいですか？");
+  if (!ok) return;
+  state = defaultState();
+  saveState();
+  renderCurrentForTeam();
+  setStatus("全リセットしました");
+}
+
+btnClearAll.onclick = clearAll;
+
+// ==============================
+// 初期描画
+// ==============================
+renderCurrentForTeam();
+
+// ==============================
+// 2分タイマー（元のまま）
+// ==============================
 const timerEl = document.getElementById("timer");
 const btnStart = document.getElementById("btnStart");
 const btnPause = document.getElementById("btnPause");
@@ -166,7 +470,7 @@ function fmt(sec) {
   const s = String(sec % 60).padStart(2, "0");
   return `${m}:${s}`;
 }
-function renderTimer(){ timerEl.textContent = fmt(remaining); }
+function renderTimer() { timerEl.textContent = fmt(remaining); }
 renderTimer();
 
 function startTimer() {
@@ -183,13 +487,11 @@ function startTimer() {
     renderTimer();
   }, 1000);
 }
-
 function pauseTimer() {
   if (!timerId) return;
   clearInterval(timerId);
   timerId = null;
 }
-
 function resetTimer() {
   pauseTimer();
   remaining = totalSeconds;
