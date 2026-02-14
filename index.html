@@ -33,6 +33,8 @@
           <button class="btn ghost" id="btnRandomCard">ランダム</button>
           <button class="btn ghost" id="btnHideNumber">表示/非表示</button>
         </div>
+
+        <div class="note">※各代表者が自分の端末でこの画面を開いてタップ</div>
       </div>
     </section>
 
@@ -47,6 +49,16 @@
             <select id="categorySelect"></select>
           </label>
 
+          <label class="select">
+            チーム
+            <select id="teamSelect">
+              <option value="1">チーム1</option>
+              <option value="2">チーム2</option>
+              <option value="3">チーム3</option>
+              <option value="4">チーム4</option>
+            </select>
+          </label>
+
           <div class="timerbox">
             <div class="timer" id="timer">02:00</div>
             <div class="row tight">
@@ -57,19 +69,27 @@
           </div>
         </div>
 
-        <!-- ★お題表示エリア（これが無いと表示されない） -->
         <div class="prompt-wrap">
-          <div class="prompt" id="promptText" aria-live="polite">（お題）</div>
+          <div class="prompt" id="promptText" aria-live="polite">（お題を表示）</div>
         </div>
 
         <div class="row">
-          <button class="btn" id="btnPrev">戻る</button>
-          <button class="btn" id="btnNext">次へ</button>
-          <button class="btn ghost" id="btnShuffle">ランダム</button>
+          <button class="btn" id="btnPrev">戻る（1つ取り消し）</button>
+          <button class="btn" id="btnNext">次へ（被りなし）</button>
+          <button class="btn ghost" id="btnShuffle">ランダム（被りなし）</button>
         </div>
 
         <div class="row">
-          <button class="btn danger" id="btnHard">激ムズに切替（大逆転用）</button>
+          <button class="btn ghost" id="btnShowTeamLog">このチーム履歴</button>
+          <button class="btn ghost" id="btnShowAllLog">全チーム履歴</button>
+          <button class="btn danger" id="btnClearAll">全履歴リセット</button>
+        </div>
+
+        <div class="small" id="statusLine"></div>
+
+        <hr style="opacity:.2;margin:14px 0;" />
+        <div class="small" style="opacity:.8;">
+          ※「次へ」を押すと、そのお題は<strong>使用済み</strong>になり、他チームでも二度と出ません。
         </div>
       </div>
     </section>
