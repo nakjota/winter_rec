@@ -113,9 +113,6 @@ function setPrompt() {
   }
   const realIndex = order[idx % order.length];
   promptText.textContent = list[realIndex];
-  // デフォで隠す
-  masked = true;
-  promptMask.style.display = "flex";
 }
 
 categorySelect.addEventListener("change", () => {
@@ -191,3 +188,4 @@ function resetTimer() {
 btnStart.onclick = startTimer;
 btnPause.onclick = pauseTimer;
 btnReset.onclick = resetTimer;
+
