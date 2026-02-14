@@ -111,9 +111,16 @@ function setPrompt() {
     promptText.textContent = "（お題なし）";
     return;
   }
+
   const realIndex = order[idx % order.length];
   promptText.textContent = list[realIndex];
+
+  // 常に表示にする
+  masked = false;
+  promptMask.style.display = "none";
 }
+
+
 
 categorySelect.addEventListener("change", () => {
   currentCategory = categorySelect.value;
@@ -188,4 +195,5 @@ function resetTimer() {
 btnStart.onclick = startTimer;
 btnPause.onclick = pauseTimer;
 btnReset.onclick = resetTimer;
+
 
